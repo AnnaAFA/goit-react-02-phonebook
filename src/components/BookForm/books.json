@@ -1,0 +1,32 @@
+{
+    "books": [
+        {
+            "id": "1",
+            "title": "To kill a Mockingbird",
+            "author": "Harper Lee",
+            "year": 1960,
+            "genre": "novel",
+            "favourite": false,
+        "cover": "img"
+    },
+    {
+            "id": "2",
+            "title": "1984",
+            "author": "Orwell",
+            "year": 1949,
+            "genre": "novel",
+            "favourite": true,
+        "cover": "img"
+    },
+    {
+            "id": "3",
+            "title": "Brave New World",
+            "author": "Aldous",
+            "year": 1932,
+            "genre": "novel",
+            "favourite": true,
+        "cover": "img"
+    }
+
+    ]
+}

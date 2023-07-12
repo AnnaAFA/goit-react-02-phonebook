@@ -1,16 +1,24 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+import { Component } from "react";
+import BookForm from "./BookForm/BookForm";
+import booksData from "./BookForm/books.json";
+
+const books = booksData.books;
+
+export class App extends Component {
+  state = {
+  books,
+  };
+
+  
+  render() {
+    return (
+      <div>
+        <BookForm />
+        {this.state.books.map(book => (
+          <div key={book.id}>{book.title}</div>
+        ))}
+      </div>
+    );
+}
+
 };
