@@ -7,7 +7,7 @@
             "year": 1960,
             "genre": "novel",
             "favourite": false,
-        "cover": "img"
+        "cover": "https://images.gr-assets.com/books/1361975680l/2657.jpg"
     },
     {
             "id": "2",
@@ -16,7 +16,7 @@
             "year": 1949,
             "genre": "novel",
             "favourite": true,
-        "cover": "img"
+        "cover": "https://images.gr-assets.com/books/1361975680l/2657.jpg"
     },
     {
             "id": "3",
@@ -25,7 +25,7 @@
             "year": 1932,
             "genre": "novel",
             "favourite": true,
-        "cover": "img"
+        "cover": "https://images.gr-assets.com/books/1361975680l/2657.jpg"
     }
 
     ]
