@@ -1,12 +1,16 @@
 import { Component } from "react";
 import BookForm from "./BookForm/BookForm";
 import booksData from "./BookForm/books.json";
+import BookList from "./BookList/BookList";
+import Modal from "./Modal/Modal";
+
 
 const books = booksData.books;
 
 export class App extends Component {
   state = {
-  books,
+    books,
+    modal: { isOpen: false, visibleData: null },
   };
 
   onRemoveBook = (bookId) => {
@@ -35,25 +39,51 @@ export class App extends Component {
     })
   }
 
+  onOpenModal = (data) => {
+    this.setState({
+      modal: {
+        isOpen: true,
+        visibleData: data,
+      }
+    })
+  }
+
+  onCloseModal = () => {
+    this.setState({
+      modal: {
+        isOpen: false,
+        visibleData: null,
+      }
+    })
+  }
+  componentDidMount() {
+    const stringifiedBooks = localStorage.getItem('books');
+    const books = JSON.parse(stringifiedBooks) ?? [];
+
+    this.setState({ books });
+}
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('Update');
+    if (prevState.modal.isOpen !== this.state.modal.isOpen) {
+      // console.log('Update modal');
+    }
+    // console.log(this.state.modal);
+    // console.log(prevState.modal);
+    if (prevState.books.length !== this.state.books.length) {
+      const stringifiedBooks = JSON.stringify(this.state.books);
+      localStorage.setItem('books', stringifiedBooks);
+    }
+}
+
   render() {
     return (
       <div>
-        <BookForm
-          title="BookForm"
+        {this.state.modal.isOpen === true && <Modal visibleData={this.state.modal.visibleData} onCloseModal={this.onCloseModal} />}
+        <BookForm title="BookForm"
           onAddBook={this.onAddBook}
         />
-        <ul>
-          {this.state.books.map(book => (
-            <li key={book.id}>
-              <button onClick={() => this.onRemoveBook(book.id)}>&times;</button>
-              <h3>Title: {book.title}</h3>
-              <h4>Author: {book.author}</h4>
-              <p>Year: {book.year}</p>
-              <p>Genre: {book.genre}</p>
-              <p>Favourite: {book.favourite ? "❤" : "-"}</p>
-              </li>
-        ))}
-        </ul>
+        <BookList onOpenModal={this.onOpenModal} onRemoveBook={this.onRemoveBook} books={this.state.books}  />
         
       </div>
     );
